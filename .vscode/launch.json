@@ -1,0 +1,55 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [{
+            "name": "root",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "apis.entrypoint.factory:service_api",
+                "--reload",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8000",
+            ],
+            "jinja": true,
+            "justMyCode": false,
+        },
+        {
+            "name": "userCenter",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "apis.user_center.factory:user_center_api",
+                "--reload",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8001"
+            ],
+            "jinja": true,
+            "justMyCode": false
+        },
+        {
+            "name": "knowledgeBaseCenter",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "apis.knowledge_base.factory:knowledge_base_api",
+                "--reload",
+                "--host",
+                "0.0.0.0",
+                "--port",
+                "8002"
+            ],
+            "jinja": true,
+            "justMyCode": false
+        }
+    ]
+}

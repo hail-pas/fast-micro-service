@@ -1,0 +1,20 @@
+{
+    "cSpell.words": [
+        "Cryptodome",
+        "dotenv",
+        "fastapi",
+        "glogging",
+        "hset",
+        "Huaweiyun",
+        "keepalive",
+        "mannual",
+        "orjson",
+        "PKCS",
+        "pydantic",
+        "Reslist",
+        "sadd",
+        "srem",
+        "sucess",
+        "trustedhost",
+    ]
+}

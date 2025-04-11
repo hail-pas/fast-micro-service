@@ -137,7 +137,7 @@ dmypy.json
 # log
 ./logs
 
-.vscode
+# .vscode
 .ruff_cache
 .pytype
 
