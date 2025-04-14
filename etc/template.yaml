@@ -6,7 +6,7 @@ relational:
   knowledge_base: "mysql://root:q5%24vArc62%24T%23%40zBf@192.168.3.101:3306/knowledge_base"
 
 redis:
-  user_center: "redis://:root@192.168.3.81:6380/0"
+  user_center: "rediss://username:password@host:6379/0?ssl_cert_reqs=required&ssl_ca_certs=/etc/ssl/certs/redis.pem"
   knowledge_base: "redis://:root@192.168.3.81:6380/0"
   max_connections: 10
 
