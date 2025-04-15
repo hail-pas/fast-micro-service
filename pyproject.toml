@@ -5,61 +5,55 @@ authors  = [
     { name = "phoenix", email = "hypofiasco@gmail.co" },
 ]
 requires-python = ">=3.11.0"
-dynamic = [ "version", "dependencies" ]
-
-
-[build-system]
-requires = [
-    "poetry>=1.5.1",
-]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry]
 version = "0.1.0"
-package-mode = false
+dependencies=[
+    "fastapi==0.115.12",
+    "python-multipart==0.0.20",
+    "starlette-context==0.4.0",
+    "pydantic-settings==2.8.1",
+    "orjson==3.10.16",
+    "httpx==0.28.1",
+    "pycryptodomex==3.22.0",
+    "passlib==1.7.4",
+    "bcrypt==4.3.0",
+    "gunicorn==23.0.0",
+    "uvicorn[standard]==0.34.0",
+    "tortoise-orm[aiomysql]==0.24.2",
+    "aerich[toml]==0.8.2",
+    "python-jose[cryptography]==3.4.0",
+    "redis==5.2.1",
+    "cachetools==5.5.2",
+    "loguru==0.7.3",
+    "python-ulid==3.0.0",
+    "captcha==0.6.0",
+    "pyinstrument==5.0.0",
+    "pydantic-ai-slim[openai,logfire]==0.0.55",
+]
 
-[tool.poetry.dependencies]
-python = ">=3.11.0,<4.0"
-fastapi = "0.115.12"
-python-multipart = "0.0.20"
-starlette-context = "0.4.0"
-pydantic-settings = "2.8.1"
-orjson = "3.10.16"
-httpx = "0.28.1"
-pycryptodomex = "3.22.0"
-passlib = "1.7.4"
-bcrypt = "4.3.0"
-gunicorn = "23.0.0"
-uvicorn = { extras = ["standard"], version = "0.34.0" }
-tortoise-orm = { extras = ["aiomysql"], version = "0.24.2" }
-aerich = { extras = ["toml"], version = "0.8.2" }
-python-jose = { extras = ["cryptography"], version = "3.4.0" }
-redis = "5.2.1"
-cachetools = "5.5.2"
-loguru = "0.7.3"
-python-ulid = "3.0.0"
-captcha = "0.6.0"
-pyinstrument = "5.0.0"
-
-oss2 = { version = "2.19.1", optional = true}
-ipython = { version = "8.15.0", optional = true }
-sentry-sdk = { extras = ["fastapi"], version = "2.5.1", optional = true }
 
 [project.optional-dependencies]
-ali-oss = [ "oss2" ]
-ipython = [ "ipython" ]
-sentry-sdk = [ "sentry-sdk" ]
+ali-oss = [ "oss2==2.19.1" ]
+ipython = [ "ipython==8.15.0" ]
+sentry-sdk = [ "sentry-sdk[fastapi]==2.26.0" ]
 
-# [[tool.poetry.source]]
-# name = "tsinghua"
-# url = "http://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
-# priority = "primary"
+[dependency-groups]
+dev = [
+  "pytest",
+  "pytest-asyncio",
+  "black",
+  "isort",
+  "ruff",
+  "freezegun",
+  "httpretty",
+  "factory-boy",
+  "hypothesis",
+  "mimesis",
+  "mypy",
+]
 
 
-[[tool.poetry.source]]
-name = "ali"
-url = "http://mirrors.aliyun.com/pypi/simple"
-priority = "primary"
+[project.scripts]
+shell = "shell"
 
 
 [tool.isort]
@@ -227,14 +221,3 @@ tortoise_orm = "storages.relational.migrate.env.TORTOISE_ORM_CONFIG"
 location = "storages/relational/migrate"
 src_folder = "./."
 
-[poetry.group.dev.dependencies]
-pytest-asyncio = "0.21.0"
-black = "23.1.0"
-isort = "5.12.0"
-ruff = "0.0.270"
-freezegun = "1.2.1"
-httpretty = "1.1.4"
-factory-boy = "3.2.1"
-hypothesis = "6.74.0"
-mimesis = "10.1.0"
-mypy = "1.15.0"
