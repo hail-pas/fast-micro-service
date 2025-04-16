@@ -8,6 +8,7 @@ from contextlib import asynccontextmanager
 from urllib.parse import unquote
 from collections.abc import AsyncGenerator
 
+import cachetools
 from pydantic import HttpUrl, MySQLDsn, RedisDsn, BaseModel, ConfigDict, model_validator
 from redis.retry import Retry
 from redis.asyncio import Redis, ConnectionPool
@@ -116,6 +117,7 @@ class RedisConfig(BaseModel):
     celery_backend: RedisDsn
     max_connections: int = 10
 
+    @cachetools.func.lru_cache(16)
     def connection_pool(self, service: ConnectionNameEnum) -> ConnectionPool:
         return ConnectionPool.from_url(
             url=str(getattr(self, service.value)),
@@ -176,7 +178,7 @@ class ServiceStringConfig(BaseModel):
 class Server(BaseModel):
     address: HttpUrl = HttpUrl("http://0.0.0.0:8000")
     cors: CorsConfig = CorsConfig()
-    worker_number: int = 16  # multiprocessing.cpu_count() * int(os.getenv("WORKERS_PER_CORE", "2")) + 1
+    worker_number: int = multiprocessing.cpu_count() * int(os.getenv("WORKERS_PER_CORE", "2")) + 1
     profiling: ProfilingConfig | None = None
     allow_hosts: list = ["*"]
     static_path: str = "/static"

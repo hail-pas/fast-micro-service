@@ -153,3 +153,4 @@ etc/*.yaml
 # 含有可能的真实数据
 .zed
 .cursorignore
+local

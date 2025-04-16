@@ -18,7 +18,7 @@ dependencies=[
     "bcrypt==4.3.0",
     "gunicorn==23.0.0",
     "uvicorn[standard]==0.34.0",
-    "tortoise-orm[aiomysql]==0.24.2",
+    "tortoise-orm[aiomysql]==0.25.0",
     "aerich[toml]==0.8.2",
     "python-jose[cryptography]==3.4.0",
     "redis==5.2.1",
@@ -27,7 +27,8 @@ dependencies=[
     "python-ulid==3.0.0",
     "captcha==0.6.0",
     "pyinstrument==5.0.0",
-    "pydantic-ai-slim[openai,logfire]==0.0.55",
+    "logfire[fastapi]==3.14.0",
+    "pydantic-ai-slim[openai]==0.0.55",
 ]
 
 
