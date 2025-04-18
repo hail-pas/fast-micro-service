@@ -1,5 +1,3 @@
-import time
-import asyncio
 from contextlib import asynccontextmanager
 from collections.abc import AsyncGenerator
 
@@ -77,13 +75,6 @@ async def health() -> dict[str, str]:
     """
     健康检查
     """
-    from configs.config import local_configs
-    from configs.defines import ConnectionNameEnum
-
-    async with local_configs.redis.get_redis(ConnectionNameEnum.user_center) as r:
-        request_count = await r.incrby("UVConcurrentCount", 1)
-    print(f">>>>>>>>>>>>>>>>>>>>>>>>>>> in {request_count} \n")
-    # time.sleep(20)
-    # for connection in ConnectionNameEnum:
-    #     await Tortoise.get_connection(connection.value).execute_query("SELECT 1")
+    for connection in ConnectionNameEnum:
+        await Tortoise.get_connection(connection.value).execute_query("SELECT 1")
     return Resp(data={"status": "ok"})
