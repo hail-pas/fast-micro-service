@@ -7,8 +7,8 @@ from contextlib import asynccontextmanager
 from collections.abc import Callable, AsyncGenerator
 
 import loguru
-from common.service_api import FastAPI, APIRouter
 from tortoise import Tortoise
+from fastapi import FastAPI, APIRouter
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.base import BaseHTTPMiddleware
