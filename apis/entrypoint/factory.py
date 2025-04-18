@@ -2,7 +2,7 @@ from aerich import Command
 from fastapi.staticfiles import StaticFiles
 from fastapi.openapi.docs import get_swagger_ui_html
 
-from common.fastapi import ServiceApi
+from common.service_api import ServiceApi
 from configs.config import local_configs
 from configs.defines import VersionFilePath, ConnectionNameEnum
 from apis.user_center.factory import user_center_api

@@ -5,7 +5,7 @@ from aerich import Command
 from fastapi import FastAPI
 from tortoise import Tortoise
 
-from common.fastapi import ServiceApi
+from common.service_api import ServiceApi
 from configs.config import local_configs
 from configs.defines import VersionFilePath, ConnectionNameEnum
 from apis.middlewares import roster as middleware_roster

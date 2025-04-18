@@ -13,7 +13,7 @@ import asyncio  # noqa
 import gunicorn.app.base  # type:ignore
 from loguru import logger  # type:ignore
 
-from common.fastapi import ServiceApi
+from common.service_api import ServiceApi
 
 # from common.log import setup_loguru
 from configs.config import local_configs  # noqa

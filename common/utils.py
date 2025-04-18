@@ -21,7 +21,6 @@ from configs.config import local_configs
 
 DATETIME_FORMAT_STRING = "%Y-%m-%d %H:%M:%S"
 DATE_FORMAT_STRING = "%Y-%m-%d"
-DATEMINUTE_FORMAT_STRING = "%Y-%m-%d %H:%M"
 
 PI = 3.1415926535897932384626  # π
 

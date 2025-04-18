@@ -13,7 +13,7 @@ from pydantic import BaseModel
 from starlette.routing import Mount, Route, WebSocketRoute
 
 from common.utils import gte_all_uris
-from common.fastapi import ServiceApi
+from common.service_api import ServiceApi
 from common.init_ctx import init_ctx  # noqa
 from apis.entrypoint import factory
 from service.dependencies import token_required, api_permission_check
