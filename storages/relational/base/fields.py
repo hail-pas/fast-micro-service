@@ -6,7 +6,6 @@ from typing import Any, TypeVar
 from urllib.parse import urlparse
 from collections.abc import Callable
 
-import orjson
 from tortoise import fields, timezone, validators
 from tortoise.models import Model
 from tortoise.timezone import get_use_tz, get_default_timezone

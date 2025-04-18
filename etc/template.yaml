@@ -13,7 +13,7 @@ redis:
 oss:
   access_key_id: ""
   access_key_secret: ""
-  endpoint: "obs.cn-east-3.myhuaweicloud.com"
+  endpoint: ""
   bucket_name: ""
   expire_time: 300
 
@@ -30,7 +30,7 @@ server:
     expose_headers: []
   # 接口响应profile配置
   profiling:
-    secret: "hulvwsfTuIURe"
+    secret: "fTuIURe"
 
   docs_uri: "/docs"
   redoc_uri: "/redoc"

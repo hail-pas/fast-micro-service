@@ -18,7 +18,7 @@ from common.utils import datetime_now
 from common.encrypt import HashUtil
 from common.schemas import Pager, CRUDPager
 from configs.config import local_configs
-from storages.redis import keys
+from storages.aredis import keys
 from configs.defines import ConnectionNameEnum
 from service.exceptions import ApiException
 from common.constant.messages import (
@@ -164,20 +164,20 @@ async def _validate_jwt_token(
         single_connection_client=True,
         decode_responses=True,
     ) as redis:
-        token_identidier = await redis.get(
+        token_identifier = await redis.get(
             keys.UserCenterKey.Token2AccountKey.format(  # type: ignore
                 token=token.credentials,
             ),
         )
 
-        if not token_identidier:
+        if not token_identifier:
             logger.warning("token缓存失效")
             raise ApiException(
                 code=ResponseCodeEnum.unauthorized.value,
                 message="登录失效或已在其他地方登录",
             )
 
-        account_id, scene = token_identidier.split(":")
+        account_id, scene = token_identifier.split(":")
 
         if request.headers.get(RequestHeaderKeyEnum.front_scene.value) and scene != request.headers.get(
             RequestHeaderKeyEnum.front_scene.value,
@@ -320,7 +320,7 @@ staff_admin_required = StaffAdminRequired()
 
 
 class ApiKeyPermissionCheck:
-    """外部apikey权限校验"""
+    """外部api key权限校验"""
 
     user_center_redis_conn_pool: ConnectionPool
 

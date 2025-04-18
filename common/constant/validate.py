@@ -33,7 +33,7 @@ class ValidateErrorTypeEnum(str, Enum):
     string_pattern_mismatch = "string_pattern_mismatch"
     string_unicode = "string_unicode"
 
-    # paser_error
+    # pase_error
     int_parsing = "int_parsing"
     decimal_parsing = "decimal_parsing"
     bool_parsing = "bool_parsing"
@@ -114,7 +114,7 @@ ValidationErrorMsgTemplates = {
     ValidateErrorTypeEnum.string_too_long: "最多{max_length}个字符",
     ValidateErrorTypeEnum.string_pattern_mismatch: "格式不正确",
     ValidateErrorTypeEnum.string_unicode: "不能包含非Unicode字符",
-    # paser_error
+    # pase_error
     ValidateErrorTypeEnum.int_parsing: "请输入正确的整数",
     ValidateErrorTypeEnum.bool_parsing: "请输入正确的布尔值",
     ValidateErrorTypeEnum.decimal_parsing: "请输入正确的小数",

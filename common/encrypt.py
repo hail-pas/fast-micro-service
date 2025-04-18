@@ -162,7 +162,7 @@ class HashUtilB64:
 
     @staticmethod
     def hmac_sha256_encode_b64(k: str, s: str) -> str:
-        """hmacsha256加密，base64编码."""
+        """hmac sha256加密，base64编码."""
         return base64.b64encode(
             HashUtil.hmac_sha256_encode(k, s).encode(),
         ).decode("utf-8")

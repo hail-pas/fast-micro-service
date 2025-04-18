@@ -1,6 +1,4 @@
 import os
-import abc
-from typing import Generic
 from itertools import islice
 from urllib.parse import urljoin
 from collections.abc import Iterable

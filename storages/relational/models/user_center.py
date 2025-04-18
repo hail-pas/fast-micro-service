@@ -8,7 +8,7 @@ from common.utils import datetime_now
 from storages.oss import OssProxy
 from configs.config import local_configs
 from configs.defines import ConnectionNameEnum
-from storages.redis.keys import UserCenterKey
+from storages.aredis.keys import UserCenterKey
 from storages.relational.base.fields import FileField
 from storages.relational.base.models import (
     BaseModel,

@@ -10,11 +10,11 @@ import uuid
 from storages import enums
 from common.encrypt import PasswordUtil
 from configs.config import local_configs
-from storages.redis import keys
+from storages.aredis import keys
 from configs.defines import ConnectionNameEnum
 from common.exceptions import ApiException
-from storages.redis.util import verify_captcha_code
-from service.auth.schemas import CodeLoginSchema, PasswordLoginSchema
+from storages.aredis.util import verify_captcha_code
+from service.auth.schema import CodeLoginSchema, PasswordLoginSchema
 from storages.relational.models.user_center import Account
 
 
@@ -32,7 +32,7 @@ async def login_cache_redis(account: Account, scene: enums.TokenSceneTypeEnum) -
             )
             # 设置 account -> token 映射
             pipe.sadd(keys.UserCenterKey.Account2TokenKey.format(account_id=str(account.id), scene=scene), token)
-            # 设置 accout -> token 过期时间
+            # 设置 account -> token 过期时间
             pipe.expire(
                 keys.UserCenterKey.Account2TokenKey.format(account_id=str(account.id), scene=scene),
                 local_configs.server.token_expire_seconds,

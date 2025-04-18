@@ -9,10 +9,10 @@ from fastapi.responses import StreamingResponse
 
 from storages import enums
 from common.regex import EMAIL_REGEX, PHONE_REGEX_CN
-from storages.redis import keys
+from storages.aredis import keys
 from common.responses import Resp
 from common.exceptions import ApiException
-from storages.redis.util import generate_captcha_code
+from storages.aredis.util import generate_captcha_code
 from storages.relational.models.user_center import Account
 
 router = APIRouter()

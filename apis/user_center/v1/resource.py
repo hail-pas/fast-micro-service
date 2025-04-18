@@ -3,7 +3,7 @@ from fastapi import Query, Depends, Request, APIRouter
 from service.crud import create_obj
 from common.responses import Resp
 from service.dependencies import api_permission_check
-from service.resource.impl import resource_list_to_trees
+from service.resource.helper import resource_list_to_trees
 from service.resource.schema import ResourceCreateSchema, ResourceLevelTreeNode
 from storages.relational.models.user_center import Resource
 

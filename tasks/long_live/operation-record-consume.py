@@ -17,7 +17,7 @@ from common.init_ctx import init_ctx
 from tasks.consumer_health_check import consumer_status, start_http_server
 from storages.relational.models.user_center import Account
 
-sink: Literal["mysql", "clickhouse"] = "clickhouse"
+sink: Literal["mysql",] = "mysql"
 
 
 class OperationRecordDictV1(BaseModel):

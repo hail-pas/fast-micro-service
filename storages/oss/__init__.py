@@ -30,7 +30,7 @@ class OssProxy(Generic[T]):
 
                 provider_cls = HuaweiyunOss
             case "minio":
-                from storages.oss.provider.minio import MinioOss
+                from storages.oss.provider.aminio import MinioOss
 
                 provider_cls = MinioOss
         if not provider_cls:

@@ -7,16 +7,16 @@ from common.utils import datetime_now
 from service.crud import obj_prefetch_fields
 from common.encrypt import PasswordUtil
 from configs.config import local_configs
-from storages.redis import keys
+from storages.aredis import keys
 from common.responses import Resp
-from service.auth.impl import (
+from service.auth.helper import (
     code_login,
     password_login,
     login_cache_redis,
     logout_cache_redis,
 )
-from storages.redis.util import verify_captcha_code
-from service.auth.schemas import (
+from storages.aredis.util import verify_captcha_code
+from service.auth.schema import (
     LoginResponse,
     CodeLoginSchema,
     ResetPasswordIn,

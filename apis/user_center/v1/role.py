@@ -23,7 +23,7 @@ from service.role.schema import (
     RoleFilterSchema,
 )
 from service.dependencies import api_permission_check
-from service.resource.impl import resource_list_to_trees
+from service.resource.helper import resource_list_to_trees
 from storages.relational.models.user_center import Role
 
 router = APIRouter(dependencies=[Depends(api_permission_check)])
