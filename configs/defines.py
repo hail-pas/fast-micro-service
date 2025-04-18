@@ -5,10 +5,10 @@ from typing import Self, Literal
 from pathlib import Path
 from zoneinfo import ZoneInfo
 from contextlib import asynccontextmanager
+from functools import lru_cache
 from urllib.parse import unquote
 from collections.abc import AsyncGenerator
 
-import cachetools
 from pydantic import HttpUrl, MySQLDsn, RedisDsn, BaseModel, ConfigDict, model_validator
 from redis.retry import Retry
 from redis.asyncio import Redis, ConnectionPool
@@ -117,16 +117,20 @@ class RedisConfig(BaseModel):
     celery_backend: RedisDsn
     max_connections: int = 10
 
-    @cachetools.func.lru_cache(16)
     def connection_pool(self, service: ConnectionNameEnum) -> ConnectionPool:
-        return ConnectionPool.from_url(
-            url=str(getattr(self, service.value)),
-            max_connections=self.max_connections,
-            decode_responses=True,
-            encoding_errors="strict",
-            retry=Retry(NoBackoff(), retries=10),
-            health_check_interval=30,
-        )
+        @lru_cache()
+        def _create_redis_pool(_service: ConnectionNameEnum) -> ConnectionPool:
+            return ConnectionPool.from_url(
+                url=str(getattr(self, _service.value)),
+                max_connections=self.max_connections,
+                decode_responses=True,
+                encoding_errors="strict",
+                retry=Retry(NoBackoff(), retries=10),
+                health_check_interval=30,
+            )
+
+        return _create_redis_pool(service)
+
 
     @asynccontextmanager
     async def get_redis(self, service: ConnectionNameEnum, **kwargs) -> AsyncGenerator[Redis, None]:  # type: ignore

@@ -71,7 +71,7 @@ class InterceptHandler(logging.Handler):
             file_name, line_num, func_name, _ = tb[-1]
             location = f"{file_name}:{func_name}:{line_num}"
             if ENVIRONMENT in [EnvironmentEnum.local.value]:
-                sys.stdout.write(traceback.format_exc())
+                print(traceback.format_exc())
                 return
 
             logger.bind(location=location).critical(
@@ -121,7 +121,7 @@ def json_sink(record: loguru.Record) -> None:  # from loguru import Message
     serialized = serialize(record.record)  # type: ignore
     if not serialized:
         return
-    sys.stdout.write(serialized)
+    print(serialized)
 
 
 class GunicornLogger(glogging.Logger):
