@@ -30,16 +30,16 @@ class LogLevelEnum(IntEnumMore):
     NOTSET = (logging.NOTSET, "NOTSET")
 
 
-class ChangableLoggerName(str, Enum):
+class ChangeableLoggerName(str, Enum):
     root = "root"
     fastaapi = "fastapi"
     tortoise = "tortoise"
 
 
 class LoggerNameEnum(str, Enum):
-    root = ChangableLoggerName.root.value
-    fastaapi = ChangableLoggerName.fastaapi.value
-    tortoise = ChangableLoggerName.tortoise.value
+    root = ChangeableLoggerName.root.value
+    fastaapi = ChangeableLoggerName.fastaapi.value
+    tortoise = ChangeableLoggerName.tortoise.value
     gunicorn_error = "gunicorn.error"
     gunicorn_asgi = "gunicorn.asgi"
     gunicorn_gunicorn = "gunicorn.access"
@@ -48,7 +48,7 @@ class LoggerNameEnum(str, Enum):
     uvicorn_access = "uvicorn.access"
 
 
-IgonredLoggerNames = [
+IgnoredLoggerNames = [
     LoggerNameEnum.uvicorn_access.value,
 ]
 
@@ -57,7 +57,7 @@ class InterceptHandler(logging.Handler):
     """Logs to loguru from Python logging module"""
 
     def emit(self, record: logging.LogRecord) -> None:
-        if record.name in IgonredLoggerNames:
+        if record.name in IgnoredLoggerNames:
             return
         try:
             level = logger.level(record.levelname).name
@@ -71,7 +71,7 @@ class InterceptHandler(logging.Handler):
             file_name, line_num, func_name, _ = tb[-1]
             location = f"{file_name}:{func_name}:{line_num}"
             if ENVIRONMENT in [EnvironmentEnum.local.value]:
-                print(traceback.format_exc())
+                sys.stdout.write(traceback.format_exc())
                 return
 
             logger.bind(location=location).critical(
@@ -121,7 +121,7 @@ def json_sink(record: loguru.Record) -> None:  # from loguru import Message
     serialized = serialize(record.record)  # type: ignore
     if not serialized:
         return
-    print(serialized)
+    sys.stdout.write(serialized)
 
 
 class GunicornLogger(glogging.Logger):

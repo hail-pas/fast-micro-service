@@ -1,12 +1,16 @@
 {
     "cSpell.words": [
+        "asgi",
         "Cryptodome",
         "dotenv",
+        "fastaapi",
         "fastapi",
         "glogging",
         "hset",
         "Huaweiyun",
         "keepalive",
+        "levelname",
+        "levelno",
         "mannual",
         "orjson",
         "PKCS",
@@ -15,6 +19,6 @@
         "sadd",
         "srem",
         "sucess",
-        "trustedhost",
+        "trustedhost"
     ]
 }
