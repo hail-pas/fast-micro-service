@@ -30,7 +30,7 @@ from service.account.schema import (
 )
 from storages.relational.models.user_center import Account
 
-router = APIRouter()  # (dependencies=[Depends(api_permission_check)])
+router = APIRouter(dependencies=[Depends(api_permission_check)])
 
 
 def get_queryset(request: Request) -> QuerySet[Account]:
